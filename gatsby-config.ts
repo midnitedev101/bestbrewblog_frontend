@@ -1,9 +1,12 @@
 import type { GatsbyConfig } from "gatsby";
+require("dotenv").config({  // adds .env variables based on environment (local, staging, production)
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Best Brew Blog`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://bestbrewblog.local`
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -12,12 +15,13 @@ const config: GatsbyConfig = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": ""
+      // "url": "https://bestbrewblog.local/graphql"
+      "url": "https://bestbrewblog.local/graphql"
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass", {
     resolve: 'gatsby-plugin-google-analytics',
     options: {
-      "trackingId": ""
+      "trackingId": "GT-5N2BRLD"
     }
   }, "gatsby-plugin-sitemap", {
     resolve: 'gatsby-plugin-manifest',
@@ -38,7 +42,14 @@ const config: GatsbyConfig = {
       "path": "./src/pages/"
     },
     __key: "pages"
-  }]
+  }, {
+    resolve: `gatsby-plugin-styled-components`,
+    options: {
+      // Add any options here
+    },
+  },
+  `gatsby-transformer-remark`,
+],
 };
 
 export default config;
