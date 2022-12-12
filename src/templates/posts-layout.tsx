@@ -4,7 +4,7 @@ import type { PageProps } from "gatsby"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import Header from "../components/Header/header"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
-import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
+// import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
 import { StaticImage } from "gatsby-plugin-image"
 import { Page } from "../pages/general.styles"
 import styled from 'styled-components'
@@ -50,7 +50,8 @@ const PostsTemplate: React.FC<PageProps> = (props) => {
                                 <div className="postText">
                                     <h3>{postItem.title}</h3>
                                     <label>by {postItem.author.node.name}</label>
-                                    <p>{retrieveExcerptFirstSentence(parse(postItem.excerpt))}</p>
+                                    {/* <p>{postItem.excerpt ? retrieveExcerptFirstSentence(parse(postItem.excerpt)): ""}</p> */}
+                                    <p>{postItem.excerpt ? parse(postItem.excerpt) : ""}</p>
                                 </div>
                             </a>
                         </Post>

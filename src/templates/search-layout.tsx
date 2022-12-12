@@ -5,7 +5,7 @@ import Header from "../components/Header/header"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import { Page } from "../pages/general.styles"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
-import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
+// import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
 import { StaticImage } from "gatsby-plugin-image"
 
 const SearchTemplate: React.FC<PageProps> = (props) => {
@@ -42,7 +42,8 @@ const SearchTemplate: React.FC<PageProps> = (props) => {
                                 <div className="postText">
                                     <h3>{postItem.node.title}</h3>
                                     <label>by {postItem.node.author.node.name}</label>
-                                    <p>{retrieveExcerptFirstSentence(parse(postItem.node.excerpt))}</p>
+                                    {/* <p>{postItem.node.excerpt ? retrieveExcerptFirstSentence(parse(postItem.node.excerpt)): ""}</p> */}
+                                    <p>{postItem.node.excerpt ? parse(postItem.node.excerpt) : ""}</p>
                                 </div>
                             </a>     
                         </Post>

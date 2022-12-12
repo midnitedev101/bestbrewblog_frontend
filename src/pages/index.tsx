@@ -2,7 +2,11 @@ import React, { useState } from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import Header from "../components/Header/header"
 import Posts from "../components/Posts/posts"
+import "../scripts/scss/styles.scss"
 import { Page } from "./general.styles"
+// import { registerCoreBlocks } from '@wordpress/block-library'
+
+// registerCoreBlocks();
 
 const headingStyles = {
   marginTop: 0,

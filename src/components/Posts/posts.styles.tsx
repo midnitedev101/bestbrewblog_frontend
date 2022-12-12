@@ -55,6 +55,12 @@ export const Post = styled.li`
         display: block;
         div.postText {
             margin: 1rem auto;
+            a {
+                font-weight: 700;
+                pointer-events: none;
+                margin: 0.5rem auto;
+                color: rgb(35,33,41);
+            }
         }
         div.gatsby-image-wrapper-constrained {
             width: 100%;

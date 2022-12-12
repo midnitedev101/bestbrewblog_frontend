@@ -5,7 +5,16 @@ import { StaticImage } from "gatsby-plugin-image"
 import Header from "../components/Header/header"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import { SinglePost } from "../pages/general.styles"
+// import WPGBlocks from 'react-gutenberg'
+// import { IWPGBlock } from 'react-gutenberg/src/types'
 
+
+// interface IPost {
+//     wordpress_id: number
+//     id: number
+//     title: string
+//     blocks: IWPGBlock[]
+//   }
 
 const SinglePostTemplate: React.FC<PageProps> = (props) => {
 
