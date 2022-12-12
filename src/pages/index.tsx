@@ -2,11 +2,19 @@ import React, { useState } from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import Header from "../components/Header/header"
 import Posts from "../components/Posts/posts"
+
+/*** Source: https://www.gatsbyjs.com/plugins/gatsby-theme-wordpress-gutenberg/ ***/
+/*** Notes: We're using Gutenberg so we need the block styles
+these are copied into this project due to a conflict in the postCSS
+version used by the Gatsby and @wordpress packages that causes build
+failures.
+@todo update this once @wordpress upgrades their postcss version 
+Code added found on scripts/css/@wordpress, scripts/css/normalize.css, scripts/css/style.css ***/
+import "../scripts/css/@wordpress/block-library/build-style/style.css"
+import "../scripts/css/@wordpress/block-library/build-style/theme.css"
+
 import "../scripts/scss/styles.scss"
 import { Page } from "./general.styles"
-// import { registerCoreBlocks } from '@wordpress/block-library'
-
-// registerCoreBlocks();
 
 const headingStyles = {
   marginTop: 0,
