@@ -30,9 +30,9 @@ const SinglePostTemplate: React.FC<PageProps> = (props) => {
             <>
             <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
                 <SinglePost className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
-                    {currentPost.featuredImage ? <img src={currentPost.featuredImage.node.mediaItemUrl} alt={currentPost.featuredImage.node.altText} className="post-banner-img" /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" imgClassName="post-banner-img" />}
+                    {currentPost.featuredImage ? <img src={currentPost.featuredImage.node.mediaItemUrl} alt={currentPost.featuredImage.node.altText} className="post-banner-img" /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" imgClassName="post-banner-img static" />}
                     <h1 className="postTitle">{parse(currentPost.title)}<span className="postAuthor"> by {(currentPost.author.node.name)} on {(currentPost.date)}</span></h1>
-                    <div>{currentPost.content? parse(currentPost.content) : ""}</div>
+                    <div className="postContent">{currentPost.content? parse(currentPost.content) : ""}</div>
                 </SinglePost>
             </>
         )

@@ -6,7 +6,7 @@ export const SearchContainer = styled.div`
   margin: 0;
   padding: 0;
     .searchInput {
-        transform: translate(20%,0);
+        transform: translate(15%,0);
         display: block;
         position: relative;
         input {

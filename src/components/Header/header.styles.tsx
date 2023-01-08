@@ -21,7 +21,7 @@ export const HeaderMenu = styled.div`
     a.logoContainer {
       opacity: 0;
       margin-top: 10%;
-      margin-left: 20%;
+      margin-left: 15%;
       position: fixed;
       display: block;
       z-index: 0;
@@ -156,7 +156,7 @@ export const HeaderMenu = styled.div`
         li {
           margin: 1rem auto;
           a {
-            transform: translate(20%,0);
+            transform: translate(15%,0);
             display: block;
             pointer-events: unset;
           }

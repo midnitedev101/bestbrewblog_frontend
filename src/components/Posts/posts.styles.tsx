@@ -13,7 +13,7 @@ export const PostsContainer = styled.ul`
         justify-content: center;
     }
     li {
-        margin: 0 auto 0 0;
+        margin: 0 auto;
         @media screen and (min-width: 1200px) {
             padding: 0 5%;
         }
