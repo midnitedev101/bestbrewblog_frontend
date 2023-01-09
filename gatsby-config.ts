@@ -20,6 +20,12 @@ const config: GatsbyConfig = {
       // "url": "https://bestbrewblog.local/graphql"
       // url: `https://bestbrewblog.local/graphql`,
       url: process.env.GRAPHQL_URL,
+      auth: {
+        htaccess: {
+          username: process.env.HTTPBASICAUTH_USERNAME,
+          password: process.env.HTTPBASICAUTH_PASSWORD,
+        }
+      }
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass", {
     resolve: 'gatsby-plugin-google-analytics',
