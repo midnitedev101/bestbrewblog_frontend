@@ -6,7 +6,9 @@ require("dotenv").config({  // adds .env variables based on environment (local, 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Best Brew Blog`,
-    siteUrl: `https://bestbrewblog.local`
+    // siteUrl: `https://bestbrewblog.local`
+    // siteUrl: `https://bestbrewblog.local`,
+    siteUrl: process.env.SITE_URL,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -16,7 +18,8 @@ const config: GatsbyConfig = {
     resolve: 'gatsby-source-wordpress',
     options: {
       // "url": "https://bestbrewblog.local/graphql"
-      "url": "https://bestbrewblog.local/graphql"
+      // url: `https://bestbrewblog.local/graphql`,
+      url: process.env.GRAPHQL_URL,
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass", {
     resolve: 'gatsby-plugin-google-analytics',
