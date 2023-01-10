@@ -4,7 +4,7 @@ import type { PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Header from "../components/Header/header"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
-import { SinglePost } from "../pages/general.styles"
+import { SinglePost } from "../scripts/tsx/general.styles"
 // import WPGBlocks from 'react-gutenberg'
 // import { IWPGBlock } from 'react-gutenberg/src/types'
 

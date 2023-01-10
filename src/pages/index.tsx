@@ -14,7 +14,7 @@ import "../scripts/css/@wordpress/block-library/build-style/style.css"
 import "../scripts/css/@wordpress/block-library/build-style/theme.css"
 
 import "../scripts/scss/styles.scss"
-import { Page } from "./general.styles"
+import { Page } from "../scripts/tsx/general.styles"
 
 const headingStyles = {
   marginTop: 0,

@@ -6,7 +6,7 @@ import Header from "../components/Header/header"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
 // import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
 import { StaticImage } from "gatsby-plugin-image"
-import { Page } from "../pages/general.styles"
+import { Page } from "../scripts/tsx/general.styles"
 import styled from 'styled-components'
 
 const Pagination = styled.div`
@@ -26,6 +26,7 @@ const PostsTemplate: React.FC<PageProps> = (props) => {
     //     console.log(JSON.stringify(postItem))
     // )
     // console.log(JSON.stringify(props))
+    console.log(props.location);
     const { currentPage, numPages } = props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
@@ -51,7 +52,7 @@ const PostsTemplate: React.FC<PageProps> = (props) => {
                                     <h3>{postItem.title}</h3>
                                     <label>by {postItem.author.node.name}</label>
                                     {/* <p>{postItem.excerpt ? retrieveExcerptFirstSentence(parse(postItem.excerpt)): ""}</p> */}
-                                    <p>{postItem.excerpt ? parse(postItem.excerpt) : ""}</p>
+                                    <span>{postItem.excerpt ? parse(postItem.excerpt) : ""}</span>
                                 </div>
                             </a>
                         </Post>

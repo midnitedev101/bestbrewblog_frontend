@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react"
 import { useStaticQuery, graphql, HeadFC, PageProps } from 'gatsby'   // imports that allow graphql to query wordpress backend content
 import Header from "../components/Header/header"
-import { Page } from "../pages/general.styles"
+import { Page } from "../scripts/tsx/general.styles"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 
 
@@ -12,6 +12,7 @@ const PageTemplate: React.FC<PageProps> = (props) => {
         const contentToggle = () => { // function toggles state whether main content is visible/header is invisible or main content is invisible/header is visible
             setContentActive(!contentActive);
         };
+        console.log(props.location.key);
 
         return (
             <>

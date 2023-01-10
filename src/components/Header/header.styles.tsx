@@ -90,7 +90,7 @@ export const HeaderMenu = styled.div`
       }
     }
     
-    // ofcorse we should find a replacement for the focus state but it's not our topic
+    // of course we should find a replacement for the focus state but it's not our topic
     &:focus {outline: none}
     
     &:hover > span:after, &:hover > span:before {

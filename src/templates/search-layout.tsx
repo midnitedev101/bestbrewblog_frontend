@@ -3,7 +3,7 @@ import { graphql } from 'gatsby'   // imports that allow graphql to query wordpr
 import type { PageProps } from "gatsby"
 import Header from "../components/Header/header"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
-import { Page } from "../pages/general.styles"
+import { Page } from "../scripts/tsx/general.styles"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
 // import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
 import { StaticImage } from "gatsby-plugin-image"
@@ -16,7 +16,10 @@ const SearchTemplate: React.FC<PageProps> = (props) => {
         setContentActive(!contentActive)
     }
 
-    const searchValRegExp = new RegExp(props.location.state.searchValue, 'i')   // Convert search value as part of a regular expression
+    // const searchValRegExp = props.location !== null ? new RegExp(props.location.state.searchValue, 'i') : ""   // Convert search value as part of a regular expression
+    const searchValRegExp = new RegExp(props.location?.state?.searchValue, 'i')   // Convert search value as part of a regular expression
+    // console.log(props.location);
+    // const searchValRegExp = props.location ? new RegExp(props.location.state.searchValue, 'i') : null   // Convert search value as part of a regular expression
     // console.log(props.pageContext.content[0].node.title)
     // console.log(searchValRegExp)
     // console.log(searchValRegExp.ignoreCase)
@@ -32,7 +35,7 @@ const SearchTemplate: React.FC<PageProps> = (props) => {
     return (
         <>
         <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
-            <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
+            <Page className={!contentActive ? "" : "active"}>   {/* If header has active class name, main content class removes active from class list, vice versa */}
                 <h3>Search Results:</h3>
                 <PostsContainer>
                     {filteredPosts.map((postItem, i) =>
@@ -42,8 +45,7 @@ const SearchTemplate: React.FC<PageProps> = (props) => {
                                 <div className="postText">
                                     <h3>{postItem.node.title}</h3>
                                     <label>by {postItem.node.author.node.name}</label>
-                                    {/* <p>{postItem.node.excerpt ? retrieveExcerptFirstSentence(parse(postItem.node.excerpt)): ""}</p> */}
-                                    <p>{postItem.node.excerpt ? parse(postItem.node.excerpt) : ""}</p>
+                                    <span>{postItem.node.excerpt ? parse(postItem.node.excerpt) : ""}</span>
                                 </div>
                             </a>     
                         </Post>

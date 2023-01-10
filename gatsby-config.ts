@@ -25,7 +25,7 @@ const config: GatsbyConfig = {
           username: process.env.HTTPBASICAUTH_USERNAME,
           password: process.env.HTTPBASICAUTH_PASSWORD,
         }
-      }
+      },
     }
   }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-sass", {
     resolve: 'gatsby-plugin-google-analytics',

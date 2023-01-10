@@ -71,7 +71,7 @@ export default function Posts() {
                         <div className="postText">
                             <h3>{postItem.node.title}</h3>
                             <label>by {postItem.node.author.node.name}</label>
-                            <p>{retrieveExcerptFirstSentence(parse(postItem.node.excerpt))}</p>
+                            <span className="postSpan">{retrieveExcerptFirstSentence(parse(postItem.node.excerpt))}</span>
                         </div>
                     </a>
                 </Post>

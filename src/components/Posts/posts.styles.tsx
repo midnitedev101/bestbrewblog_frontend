@@ -36,15 +36,18 @@ export const Post = styled.li`
         border-radius: 0.35rem;
         object-fit: cover;
     }
-    p, label {
+    p, label, span.postSpan {
         color: rgb(35, 33, 41);
         font-size: 14px;
         margin-bottom: 0px;
         line-height: 1.25;
         font-family: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
     }
-    p {
+    p, span.postSpan {
         margin-top: 10px;
+    }
+    span.postSpan {
+        display: block;
     }
     label {
         display: inline-block;
