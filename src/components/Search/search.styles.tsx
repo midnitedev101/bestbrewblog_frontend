@@ -20,14 +20,18 @@ export const SearchContainer = styled.div`
             border: 1px solid #222;
             border-radius: 0.2rem;
             padding-left: 0.5rem;
+            padding-right: 2.15rem;
         }
         a.searchBtn {
             position: absolute;
             width: 2rem;
             height: 2rem;
             transform: unset;
-            margin: 0.20rem 0 0.20rem 16rem;
+            margin: 0.2rem 0 0.2rem 15.25rem;
             top: 0;
+            svg {
+                fill: #222;
+            }
         }
     }
 `;

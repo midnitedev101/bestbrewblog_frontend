@@ -2,13 +2,14 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'   // imports that allow graphql to query wordpress backend content
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import { PostsContainer, Post } from './posts.styles'
-import retrieveExcerptFirstSentence from '../../hooks/retrieveExcerptFirstSentence'
+// import retrieveExcerptFirstSentence from '../../hooks/retrieveExcerptFirstSentence'
+import getReadingTime from '../../hooks/getReadingTime'
 import { StaticImage } from "gatsby-plugin-image"
 
 export default function Posts() {
     const data = useStaticQuery(graphql`
         query PostsQuery {
-            posts: allWpPost(limit: 9) {
+            posts: allWpPost(limit: 6) {
                 edges {
                 node {
                     author {
@@ -22,8 +23,9 @@ export default function Posts() {
                             altText
                         }
                     }
+                    content
                     excerpt
-                    date
+                    date(formatString: "MMMM DD, YYYY")
                     title
                     link
                     slug
@@ -33,18 +35,18 @@ export default function Posts() {
 
             pages: allWpPage {
                 edges {
-                  node {
+                    node {
                     id
                     slug
-                  }
+                    }
                 }
             }
 
             images: allImageSharp {
                 nodes {
-                  gatsbyImageData
+                    gatsbyImageData
                 }
-              }
+            }
             
         }
     `)
@@ -70,8 +72,13 @@ export default function Posts() {
                         {postItem.node.featuredImage ? <img src={postItem.node.featuredImage.node.mediaItemUrl} alt={postItem.node.featuredImage.node.altText} /> : <StaticImage src="../../images/banner_2.webp" alt="img_placeholder" />}
                         <div className="postText">
                             <h3>{postItem.node.title}</h3>
-                            <label>by {postItem.node.author.node.name}</label>
-                            <span className="postSpan">{retrieveExcerptFirstSentence(parse(postItem.node.excerpt))}</span>
+                            {/* <label>by {postItem.node.author.node.name}</label> */}
+                            {/* <span className="postSpan">{retrieveExcerptFirstSentence(parse(postItem.node.excerpt))}</span> */}
+                            <div className="somePostDetails">
+                                <span className="postDate">{postItem.node.date}</span>
+                                <span className="postWordCnt">{getReadingTime(parse(postItem.node.content))}</span>
+                            </div>
+                            <span className="postSpan">{parse(postItem.node.excerpt)}</span>
                         </div>
                     </a>
                 </Post>

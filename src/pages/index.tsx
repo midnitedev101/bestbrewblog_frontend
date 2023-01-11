@@ -1,7 +1,9 @@
 import React, { useState } from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import Posts from "../components/Posts/posts"
+import { HomeHero } from "../scripts/tsx/homepage.styles"
 
 /*** Source: https://www.gatsbyjs.com/plugins/gatsby-theme-wordpress-gutenberg/ ***/
 /*** Notes: We're using Gutenberg so we need the block styles
@@ -61,6 +63,11 @@ const docLinkStyle = {
   display: `inline-block`,
   marginBottom: 24,
   marginRight: 12,
+}
+const spacerStyle = {
+  padding: `50vh 0`,
+  position: `static`,
+  display: `block`,
 }
 
 const descriptionStyle = {
@@ -156,7 +163,7 @@ const IndexPage: React.FC<PageProps> = () => {
     <>
       <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
       <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
-        <h1 style={headingStyles}>
+        {/* <h1 style={headingStyles}>
           Congratulations
           <br />
           <span style={headingAccentStyles}>— you just made a Gatsby site! 🎉🎉🎉</span>
@@ -176,8 +183,8 @@ const IndexPage: React.FC<PageProps> = () => {
               </a>
             </li>
           ))}
-        </ul>
-        <ul style={listStyles}>
+        </ul> */}
+        {/* <ul style={listStyles}>
           {links.map(link => (
             <li key={link.url} style={{ ...listItemStyles, color: link.color }}>
               <span>
@@ -196,13 +203,24 @@ const IndexPage: React.FC<PageProps> = () => {
               </span>
             </li>
           ))}
-        </ul>
-        <img
+        </ul> */}
+        {/* <img
           alt="Gatsby G Logo"
           src="data:image/svg+xml,%3Csvg width='24' height='24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2a10 10 0 110 20 10 10 0 010-20zm0 2c-3.73 0-6.86 2.55-7.75 6L14 19.75c3.45-.89 6-4.02 6-7.75h-5.25v1.5h3.45a6.37 6.37 0 01-3.89 4.44L6.06 9.69C7 7.31 9.3 5.63 12 5.63c2.13 0 4 1.04 5.18 2.65l1.23-1.06A7.959 7.959 0 0012 4zm-8 8a8 8 0 008 8c.04 0 .09 0-8-8z' fill='%23639'/%3E%3C/svg%3E"
-        />
+        /> */}
+        <HomeHero>
+          <div className="heroWrapper">
+            <div className="heroOverlay">
+              <h1>Hi World!</h1>
+              <h3>This is the Best Brew Blog.<br/> A personalized compendium of content for those who enjoy, fantasize and sexualize anything regarding the most popular drink in the world: coffee (tea and water don't count).</h3>
+            </div>
+          </div>
+        </HomeHero>
+        <span style={spacerStyle}></span>
+        <h2>Most Recent Posts:</h2>
         <Posts />
       </Page>
+      <Footer />
     </>
   )
 }

@@ -3,8 +3,10 @@ import { graphql, Link } from 'gatsby'   // imports that allow graphql to query 
 import type { PageProps } from "gatsby"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
 // import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
+import getReadingTime from '../hooks/getReadingTime'
 import { StaticImage } from "gatsby-plugin-image"
 import { Page } from "../scripts/tsx/general.styles"
 import styled from 'styled-components'
@@ -26,7 +28,7 @@ const PostsTemplate: React.FC<PageProps> = (props) => {
     //     console.log(JSON.stringify(postItem))
     // )
     // console.log(JSON.stringify(props))
-    console.log(props.location);
+    // console.log(props.location);
     const { currentPage, numPages } = props.pageContext
     const isFirst = currentPage === 1
     const isLast = currentPage === numPages
@@ -42,36 +44,41 @@ const PostsTemplate: React.FC<PageProps> = (props) => {
     return (
         <>
             <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
-            <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
-                <PostsContainer>
-                    {posts.nodes.map((postItem, i) =>
-                        <Post key={"post_"+i}>
-                            <a href={"/post"+postItem.link} rel="noopener noreferrer">
-                                {postItem.featuredImage ? <img src={postItem.featuredImage.node.mediaItemUrl} alt={postItem.featuredImage.node.altText} /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" />}
-                                <div className="postText">
-                                    <h3>{postItem.title}</h3>
-                                    <label>by {postItem.author.node.name}</label>
-                                    {/* <p>{postItem.excerpt ? retrieveExcerptFirstSentence(parse(postItem.excerpt)): ""}</p> */}
-                                    <span>{postItem.excerpt ? parse(postItem.excerpt) : ""}</span>
-                                </div>
-                            </a>
-                        </Post>
-                    )}
-                </PostsContainer>
+                <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
+                    <PostsContainer>
+                        {posts.nodes.map((postItem, i) =>
+                            <Post key={"post_"+i}>
+                                <a href={"/post"+postItem.link} rel="noopener noreferrer">
+                                    {postItem.featuredImage ? <img src={postItem.featuredImage.node.mediaItemUrl} alt={postItem.featuredImage.node.altText} /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" />}
+                                    <div className="postText">
+                                        <h3>{postItem.title}</h3>
+                                        <label>by {postItem.author.node.name}</label>
+                                        <div className="somePostDetails">
+                                            <span className="postDate">{postItem.date}</span>
+                                            <span className="postWordCnt">{getReadingTime(parse(postItem.content))}</span>
+                                        </div>
+                                        {/* <p>{postItem.excerpt ? retrieveExcerptFirstSentence(parse(postItem.excerpt)): ""}</p> */}
+                                        <span>{postItem.excerpt ? parse(postItem.excerpt) : ""}</span>
+                                    </div>
+                                </a>
+                            </Post>
+                        )}
+                    </PostsContainer>
 
-                <Pagination>
-                    {!isFirst && (
-                        <Link to={prevPage} rel="prev" className="nav prev">
-                        ← Previous Page
-                        </Link>
-                    )}
-                    {!isLast && (
-                        <Link to={nextPage} rel="next" className="nav next">
-                        Next Page →
-                        </Link>
-                    )}
-                </Pagination>
-            </Page>
+                    <Pagination>
+                        {!isFirst && (
+                            <Link to={prevPage} rel="prev" className="nav prev">
+                            ← Previous Page
+                            </Link>
+                        )}
+                        {!isLast && (
+                            <Link to={nextPage} rel="next" className="nav next">
+                            Next Page →
+                            </Link>
+                        )}
+                    </Pagination>
+                </Page>
+            <Footer />
         </>
     )
 }
@@ -92,6 +99,7 @@ export const postsQuery = graphql`
                 content
                 excerpt
                 link
+                date(formatString: "MMMM DD, YYYY")
                 author {
                     node {
                         name

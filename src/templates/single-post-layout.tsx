@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'   // imports that allow graphql to query wordpr
 import type { PageProps } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import { SinglePost } from "../scripts/tsx/general.styles"
 // import WPGBlocks from 'react-gutenberg'
@@ -28,12 +29,13 @@ const SinglePostTemplate: React.FC<PageProps> = (props) => {
 
         return (
             <>
-            <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
-                <SinglePost className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
-                    {currentPost.featuredImage ? <img src={currentPost.featuredImage.node.mediaItemUrl} alt={currentPost.featuredImage.node.altText} className="post-banner-img" /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" imgClassName="post-banner-img static" />}
-                    <h1 className="postTitle">{parse(currentPost.title)}<span className="postAuthor"> by {(currentPost.author.node.name)} on {(currentPost.date)}</span></h1>
-                    <div className="postContent">{currentPost.content? parse(currentPost.content) : ""}</div>
-                </SinglePost>
+                <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
+                    <SinglePost className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
+                        {currentPost.featuredImage ? <img src={currentPost.featuredImage.node.mediaItemUrl} alt={currentPost.featuredImage.node.altText} className="post-banner-img" /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" imgClassName="post-banner-img static" />}
+                        <h1 className="postTitle">{parse(currentPost.title)}<span className="postAuthor"> by {(currentPost.author.node.name)} on {(currentPost.date)}</span></h1>
+                        <div className="postContent">{currentPost.content? parse(currentPost.content) : ""}</div>
+                    </SinglePost>
+                <Footer />
             </>
         )
 }

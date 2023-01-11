@@ -13,7 +13,6 @@ export const PostsContainer = styled.ul`
         justify-content: center;
     }
     li {
-        margin: 0 auto;
         @media screen and (min-width: 1200px) {
             padding: 0 5%;
         }
@@ -23,7 +22,7 @@ export const PostsContainer = styled.ul`
 
 export const Post = styled.li`
     list-style:none;
-
+    margin: 1rem auto;
     h3 {
         display: inline-block;
         margin: 0 0.25rem auto 0;
@@ -36,7 +35,7 @@ export const Post = styled.li`
         border-radius: 0.35rem;
         object-fit: cover;
     }
-    p, label, span.postSpan {
+    p, label, span.postSpan, span.postDate, span.postWordCnt {
         color: rgb(35, 33, 41);
         font-size: 14px;
         margin-bottom: 0px;
@@ -48,6 +47,20 @@ export const Post = styled.li`
     }
     span.postSpan {
         display: block;
+        text-align: left;
+    }
+    div.somePostDetails {
+        display: block;
+        margin-top: 10px;
+    }
+    span.postDate {
+        display: inline-block;
+        font-size: 12px;
+    }
+    span.postWordCnt {
+        display: inline-block;
+        float: right;
+        font-size: 12px;
     }
     label {
         display: inline-block;

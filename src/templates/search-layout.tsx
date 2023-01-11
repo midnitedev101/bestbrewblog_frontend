@@ -2,10 +2,12 @@ import React, {useState} from "react"
 import { graphql } from 'gatsby'   // imports that allow graphql to query wordpress backend content
 import type { PageProps } from "gatsby"
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 import { Page } from "../scripts/tsx/general.styles"
 import { PostsContainer, Post } from '../components/Posts/posts.styles'
 // import retrieveExcerptFirstSentence from '../hooks/retrieveExcerptFirstSentence'
+import getReadingTime from '../hooks/getReadingTime'
 import { StaticImage } from "gatsby-plugin-image"
 
 const SearchTemplate: React.FC<PageProps> = (props) => {
@@ -34,25 +36,30 @@ const SearchTemplate: React.FC<PageProps> = (props) => {
 
     return (
         <>
-        <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
-            <Page className={!contentActive ? "" : "active"}>   {/* If header has active class name, main content class removes active from class list, vice versa */}
-                <h3>Search Results:</h3>
-                <PostsContainer>
-                    {filteredPosts.map((postItem, i) =>
-                        <Post key={"post_"+i}>
-                            <a href={"/post"+postItem.node.link} rel="noopener noreferrer">
-                                {postItem.node.featuredImage ? <img src={postItem.node.featuredImage.node.mediaItemUrl} alt={postItem.node.featuredImage.node.altText} /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" />}
-                                <div className="postText">
-                                    <h3>{postItem.node.title}</h3>
-                                    <label>by {postItem.node.author.node.name}</label>
-                                    <span>{postItem.node.excerpt ? parse(postItem.node.excerpt) : ""}</span>
-                                </div>
-                            </a>     
-                        </Post>
-                    )}
-                    
-                </PostsContainer>
-            </Page>
+            <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
+                <Page className={!contentActive ? "" : "active"}>   {/* If header has active class name, main content class removes active from class list, vice versa */}
+                    <h3>Search Results:</h3>
+                    <PostsContainer>
+                        {filteredPosts.map((postItem, i) =>
+                            <Post key={"post_"+i}>
+                                <a href={"/post"+postItem.node.link} rel="noopener noreferrer">
+                                    {postItem.node.featuredImage ? <img src={postItem.node.featuredImage.node.mediaItemUrl} alt={postItem.node.featuredImage.node.altText} /> : <StaticImage src="../images/banner_2.webp" alt="img_placeholder" />}
+                                    <div className="postText">
+                                        <h3>{postItem.node.title}</h3>
+                                        <label>by {postItem.node.author.node.name}</label>
+                                        <div className="somePostDetails">
+                                            <span className="postDate">{postItem.node.date}</span>
+                                            <span className="postWordCnt">{getReadingTime(parse(postItem.node.content))}</span>
+                                        </div>
+                                        <span>{postItem.node.excerpt ? parse(postItem.node.excerpt) : ""}</span>
+                                    </div>
+                                </a>     
+                            </Post>
+                        )}
+                        
+                    </PostsContainer>
+                </Page>
+            <Footer />
         </>
     )
 }

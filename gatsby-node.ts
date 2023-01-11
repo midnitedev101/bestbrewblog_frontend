@@ -42,6 +42,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                     node {
                         id
                         slug
+                        date(formatString: "MMMM DD, YYYY")
                     }
                 }
             }
@@ -110,6 +111,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
                         title
                         link
                         excerpt
+                        content
+                        date(formatString: "MMMM DD, YYYY")
                         author {
                             node {
                                 name

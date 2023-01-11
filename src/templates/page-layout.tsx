@@ -1,6 +1,7 @@
 import React, {Component, useState} from "react"
 import { useStaticQuery, graphql, HeadFC, PageProps } from 'gatsby'   // imports that allow graphql to query wordpress backend content
 import Header from "../components/Header/header"
+import Footer from "../components/Footer/footer"
 import { Page } from "../scripts/tsx/general.styles"
 import parse from 'html-react-parser'  // allows parsing html content into plain text string
 
@@ -12,16 +13,17 @@ const PageTemplate: React.FC<PageProps> = (props) => {
         const contentToggle = () => { // function toggles state whether main content is visible/header is invisible or main content is invisible/header is visible
             setContentActive(!contentActive);
         };
-        console.log(props.location.key);
+        // console.log(props.location.key);
 
         return (
             <>
-            <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
-                <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
-                    <h1 className="pageTitle">{currentPage.title ? parse(currentPage.title) : ""}</h1>
-                    {currentPage.content ? parse(currentPage.content) : ""}
-                    {/* <div dangerouslySetInnerHTML={{ __html: currentPage.content }} /> */}
-                </Page>
+                <Header contentToggle={contentToggle} contentActive={contentActive} />  {/* Passes contentToggle function for header button and contentActive status for header component evaluation */}
+                    <Page className={!contentActive ? "" : "active"}> {/* If header has active class name, main content class removes active from class list, vice versa */}
+                        <h1 className="pageTitle">{currentPage.title ? parse(currentPage.title) : ""}</h1>
+                        {currentPage.content ? parse(currentPage.content) : ""}
+                        {/* <div dangerouslySetInnerHTML={{ __html: currentPage.content }} /> */}
+                    </Page>
+                <Footer />
             </>
         )
     // }
