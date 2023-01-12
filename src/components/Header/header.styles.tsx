@@ -118,6 +118,7 @@ export const HeaderMenu = styled.div`
   }
 
   &.active {
+    z-index: 1;
     .nav:before {
       opacity: 1;
       clip-path: circle(100%);

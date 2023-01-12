@@ -42,11 +42,12 @@ export const SinglePost = styled.main`
   margin: 0 auto;
   &.active {
     opacity: 1;
-    z-index: 1;
+    // z-index: 1;
   }
   @media screen and (min-width: 768px) {
-    padding: 0 96px;
+    padding: 5% 96px;
     max-width: 900px;
+
   }
 
   h1.postTitle {
@@ -59,7 +60,7 @@ export const SinglePost = styled.main`
       font-size: 2rem;
       left: 50%;
       top: 11rem;
-      transform: translate(-50%, 0%);
+      transform: translate(-50%, 100%);
       text-shadow: 0.15rem 0.1rem #232129;
       letter-spacing: 0.025rem;
       padding: 0 1rem;
