@@ -11,7 +11,7 @@ export const HomeHero = styled.div`
         left: 0;
         z-index: -1;
         div.heroOverlay {
-            background: radial-gradient(at 35% top, rgba(30, 34, 34, 0.7), rgba(30, 34, 34, 0.3));
+            background: radial-gradient(at 75% top, rgba(30, 34, 34, 0.7), rgba(30, 34, 34, 0.3));
             display: flex;
             flex-direction: column;
             align-items: center;

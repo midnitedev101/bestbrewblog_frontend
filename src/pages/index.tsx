@@ -212,7 +212,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <div className="heroWrapper">
             <div className="heroOverlay">
               <h1>Hi World!</h1>
-              <h3>This is the Best Brew Blog.<br/> A personalized compendium of content for those who enjoy, fantasize and sexualize anything regarding the most popular drink in the world: coffee (tea and water don't count).</h3>
+              <h3>This is the Best Brew Blog. <br/> A personalized compendium of content for those who enjoy, fantasize and sexualize anything regarding the most popular drink in the world: <br/><br/> COFFEE <br/><br/> (tea and water doesn't count)</h3>
             </div>
           </div>
         </HomeHero>

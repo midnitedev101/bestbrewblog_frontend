@@ -11,6 +11,7 @@ export const PostsContainer = styled.ul`
         display: grid;
         grid-template-columns: 33% 33% 33%;
         justify-content: center;
+        max-width: 1200px;
     }
     li {
         @media screen and (min-width: 1200px) {
